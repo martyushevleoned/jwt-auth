@@ -1,5 +1,6 @@
 package com.example.securityjwt.config;
 
+import com.example.securityjwt.model.entity.Role;
 import com.example.securityjwt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -39,7 +40,7 @@ public class SecurityConfig {
                         .requestMatchers("/unsecured").permitAll()
                         .requestMatchers("/secured").authenticated()
                         .requestMatchers("/info").authenticated()
-                        .requestMatchers("/admin").hasRole("ADMIN")
+                        .requestMatchers("/admin").hasAuthority(Role.ADMIN.getAuthority())
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
