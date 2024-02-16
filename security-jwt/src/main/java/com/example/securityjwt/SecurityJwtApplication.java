@@ -28,7 +28,7 @@ public class SecurityJwtApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         userRepository.save(
-                new User("email", "username", securityConfig.passwordEncoder().encode("password"), Set.of(Role.USER))
+                new User("email", "username", securityConfig.passwordEncoder().encode("password"), Set.of(Role.USER, Role.ADMIN))
         );
     }
 }
