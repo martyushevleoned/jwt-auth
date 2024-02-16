@@ -1,12 +1,15 @@
 package com.example.securityjwt;
 
 import com.example.securityjwt.config.SecurityConfig;
+import com.example.securityjwt.model.entity.Role;
 import com.example.securityjwt.model.entity.User;
 import com.example.securityjwt.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.Set;
 
 @SpringBootApplication
 public class SecurityJwtApplication implements CommandLineRunner {
@@ -24,8 +27,8 @@ public class SecurityJwtApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        userRepository.save(
-//                new User("email", "username", securityConfig.passwordEncoder().encode("password"))
-//        );
+        userRepository.save(
+                new User("email", "username", securityConfig.passwordEncoder().encode("password"), Set.of(Role.USER))
+        );
     }
 }
