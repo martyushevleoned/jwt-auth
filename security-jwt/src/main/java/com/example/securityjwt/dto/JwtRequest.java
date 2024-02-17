@@ -1,7 +1,6 @@
 package com.example.securityjwt.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 
 @Getter

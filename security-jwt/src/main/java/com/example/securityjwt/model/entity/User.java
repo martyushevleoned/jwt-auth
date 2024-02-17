@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Collection;
 import java.util.Set;
 
 @Entity
@@ -29,6 +28,7 @@ public class User{
     @Column(columnDefinition = "text", unique = true, nullable = false)
     private String username;
 
+    @Setter
     @Column(columnDefinition = "text", nullable = false)
     private String password;
 
