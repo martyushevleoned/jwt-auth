@@ -1,11 +1,9 @@
 package com.example.securityjwt.controller;
 
-import com.example.securityjwt.config.SecurityConfig;
 import com.example.securityjwt.dto.AppError;
 import com.example.securityjwt.dto.JwtRequest;
 import com.example.securityjwt.dto.JwtResponse;
 import com.example.securityjwt.dto.RegistrationUserDto;
-import com.example.securityjwt.model.entity.Role;
 import com.example.securityjwt.model.entity.User;
 import com.example.securityjwt.service.UserService;
 import com.example.securityjwt.utils.JwtTokenUtils;
@@ -16,9 +14,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Set;
 
 @RestController
 public class AuthController {
@@ -33,7 +30,7 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private SecurityConfig securityConfig;
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/auth")
     public ResponseEntity<?> adminData(@RequestBody JwtRequest authRequest) {
@@ -63,7 +60,7 @@ public class AuthController {
                 new User(
                         registrationUserDto.getEmail(),
                         registrationUserDto.getUsername(),
-                        securityConfig.passwordEncoder().encode(registrationUserDto.getPassword())
+                        passwordEncoder.encode(registrationUserDto.getPassword())
                 )
         );
 

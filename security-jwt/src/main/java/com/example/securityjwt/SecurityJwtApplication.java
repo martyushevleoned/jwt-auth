@@ -1,6 +1,5 @@
 package com.example.securityjwt;
 
-import com.example.securityjwt.config.SecurityConfig;
 import com.example.securityjwt.model.entity.Role;
 import com.example.securityjwt.model.entity.User;
 import com.example.securityjwt.model.repository.UserRepository;
@@ -8,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Set;
 
@@ -23,7 +23,7 @@ public class SecurityJwtApplication implements CommandLineRunner {
     private UserRepository userRepository;
 
     @Autowired
-    private SecurityConfig securityConfig;
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
@@ -31,7 +31,7 @@ public class SecurityJwtApplication implements CommandLineRunner {
         User admin = new User(
                 "adminEmail",
                 "admin",
-                securityConfig.passwordEncoder().encode("password")
+                passwordEncoder.encode("password")
         );
         admin.setRoles(Set.of(Role.ADMIN));
 
