@@ -27,15 +27,14 @@ public class SecurityJwtApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        userRepository.save(
-                new User("email_user", "username",
-                        securityConfig.passwordEncoder().encode("password"),
-                        Set.of(Role.USER))
+
+        User admin = new User(
+                "adminEmail",
+                "admin",
+                securityConfig.passwordEncoder().encode("password")
         );
-        userRepository.save(
-                new User("email_admin", "admin",
-                        securityConfig.passwordEncoder().encode("password"),
-                        Set.of( Role.ADMIN))
-        );
+        admin.setRoles(Set.of(Role.ADMIN));
+
+        userRepository.save(admin);
     }
 }
