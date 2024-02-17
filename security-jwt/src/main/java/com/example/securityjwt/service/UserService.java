@@ -24,6 +24,10 @@ public class UserService implements UserDetailsService {
         return Optional.ofNullable(userRepository.findByUsername(username));
     }
 
+    public Optional<User> findByEmail(String email){
+        return Optional.ofNullable(userRepository.findByEmail(email));
+    }
+
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
