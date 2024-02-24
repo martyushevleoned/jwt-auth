@@ -13,13 +13,11 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @CrossOrigin
     @PostMapping("/auth")
     public ResponseEntity<?> authUser(@RequestBody JwtRequest authRequest) {
         return authService.createAuthToken(authRequest);
     }
 
-    @CrossOrigin
     @PostMapping("/registration")
     public ResponseEntity<?> registerUser(@RequestBody RegistrationUserDto registrationUserDto) {
         return authService.createRegistrationToken(registrationUserDto);
